@@ -18,6 +18,13 @@ public class JumpingGuy extends Actor
         fall();
         if (Greenfoot.isKeyDown("w") && isOnSolidGround()) jump();
         move();
+        
+        if (TouchingAnt() == true){
+            Greenfoot.setWorld(new World2());
+        }
+        if (TouchingFly() == true){
+            Greenfoot.setWorld(new world3());
+        }
     }
     public void fall(){
         setLocation(getX(),getY() + Vel);
@@ -46,4 +53,26 @@ public class JumpingGuy extends Actor
         
         return isOnGround;
     }
-}
+    
+        public boolean TouchingAnt(){
+        boolean TouchingAnt = false;
+        
+        int imageWidth = getImage().getWidth();
+        int imageHeight = getImage().getHeight();
+        if (getOneObjectAtOffset(imageWidth / -2, imageHeight / 2, change2.class) != null ||
+            getOneObjectAtOffset(imageWidth / 2, imageHeight / 2, change2.class) != null) TouchingAnt = true;
+        
+        return TouchingAnt;
+    }
+    
+        public boolean TouchingFly(){
+        boolean TouchingFly = false;
+        
+        int imageWidth = getImage().getWidth();
+        int imageHeight = getImage().getHeight();
+        if (getOneObjectAtOffset(imageWidth / -2, imageHeight / 2, change3.class) != null ||
+            getOneObjectAtOffset(imageWidth / 2, imageHeight / 2, change3.class) != null) TouchingFly = true;
+        
+        return TouchingFly;
+    }
+    }
